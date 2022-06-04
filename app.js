@@ -1,6 +1,13 @@
 import express from 'express';
-export const app = express();
+import helmet from 'helmet';
 
-app.get('/', (req, res) => {
-	res.send('Hello World!');
+const app = express();
+
+// middleware
+app.use(helmet()); // middleware for security
+
+app.get('/health', (req, res) => {
+	res.send('Sever is running.');
 });
+
+export default app;
