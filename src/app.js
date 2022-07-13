@@ -16,6 +16,17 @@ app.use(cors(corsOption));
 app.use(express.json());
 
 // routing
+app.get('/', (req, res) => {
+	res.json({
+		message: 'Sever is running successfully via docker',
+	});
+});
+
+app.get('/api', (req, res) => {
+	res.json({
+		message: 'api routing',
+	});
+});
 
 // error handler
 
