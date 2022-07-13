@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 
 app.get('/api', (req, res) => {
 	res.json({
-		message: 'api routing',
+		message: 'api url',
 	});
 });
 
