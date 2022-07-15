@@ -3,6 +3,9 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import cors from 'cors';
 
+import userRouter from './user/user.router.js';
+import errorHandler from './middleware/errorHandler.js';
+
 // declare variable
 const app = express();
 const corsOption = {
@@ -16,18 +19,9 @@ app.use(cors(corsOption));
 app.use(express.json());
 
 // routing
-app.get('/', (req, res) => {
-	res.json({
-		message: 'Sever is running successfully via docker',
-	});
-});
+app.use('/api/user', userRouter);
 
-app.get('/api', (req, res) => {
-	res.json({
-		message: 'api url',
-	});
-});
-
-// error handler
+// error handling
+app.use(errorHandler);
 
 export default app;

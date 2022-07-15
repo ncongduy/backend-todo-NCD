@@ -1,5 +1,7 @@
 import UserModel from './user.model.js';
 
+import {NotFoundError} from '../middleware/errorHandler.js';
+
 const getAll = async () => {
 	const allUser = await UserModel.findAll();
 
@@ -8,8 +10,7 @@ const getAll = async () => {
 
 const getOne = async (id) => {
 	const foundUser = await UserModel.findOne({where: {id: id}});
-
-	if (!foundUser) throw Error('User does not exist.');
+	if (!foundUser) throw new NotFoundError('User does not exist.');
 
 	return foundUser;
 };
