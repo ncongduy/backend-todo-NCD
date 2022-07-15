@@ -1,3 +1,5 @@
+import logError from '../utils/logError.js';
+
 export class ApiError {
   constructor(statusCode, message, source) {
     this.statusCode = statusCode;
@@ -38,7 +40,7 @@ export class BadRequestError extends ApiError {
 
 const errorHandler = (error, req, res, next) => {
   if (error.source) {
-    console.error(error.source);
+    logError(error, req);
   }
 
   res.status(error.statusCode).json({
