@@ -53,7 +53,7 @@ User.hasMany(Task, {
 	onUpdate: 'CASCADE',
 });
 
-Task.belongsTo(User);
+// Task.belongsTo(User);
 
 User.sync({alter: true})
 	.then(() => {

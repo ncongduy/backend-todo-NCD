@@ -6,6 +6,7 @@ const cors = require('cors');
 
 // import internal
 const userRouter = require('./user/user.router.js');
+const taskRouter = require('./task/task.router.js');
 const {errorHandler, NotFoundError} = require('./middleware/errorHandler.js');
 const apiContentType = require('./middleware/apiContentType.js');
 
@@ -24,6 +25,7 @@ app.use(express.json());
 
 // routing
 app.use('/api/user', userRouter);
+app.use('/api/task', taskRouter);
 
 app.get('*', (req, res, next) => {
 	next(new NotFoundError());

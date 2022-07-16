@@ -15,6 +15,14 @@ const Task = db.define('Task', {
     type: DataTypes.BOOLEAN,
     defaultValue: false,
   },
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    validate: {
+      notNull: true,
+      notEmpty: true,
+    },
+  },
 });
 
 Task.sync({alter: true})
