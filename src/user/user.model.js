@@ -1,7 +1,7 @@
-import {DataTypes} from 'sequelize';
+const {DataTypes} = require('sequelize');
 
-import db from '../config/db.js';
-import Task from '../task/task.model.js';
+const db = require('../config/db.js');
+const Task = require('../task/task.model.js');
 
 const User = db.define('User', {
 	firstName: {
@@ -61,4 +61,4 @@ User.sync({alter: true})
 	})
 	.catch((error) => console.error('Table User can not synchronize with error: ', error));
 
-export default User;
+module.exports = User;

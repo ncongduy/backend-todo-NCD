@@ -1,8 +1,11 @@
-import dotenv from 'dotenv';
+// import from library
+const dotenv = require('dotenv');
 
-import app from './app.js';
-import db from './config/db.js';
+// import from internal
+const app = require('./app.js');
+const db = require('./config/db.js');
 
+// config and declare variable
 dotenv.config();
 const port = process.env.PORT || 5000;
 

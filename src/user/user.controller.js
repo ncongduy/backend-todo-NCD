@@ -1,5 +1,5 @@
-import UserService from './user.service.js';
-import {BadRequestError} from '../middleware/errorHandler.js';
+const UserService = require('./user.service.js');
+const {BadRequestError} = require('../middleware/errorHandler.js');
 
 const getAllUser = async (req, res, next) => {
 	try {
@@ -75,4 +75,4 @@ const deleteUser = async (req, res, next) => {
 	}
 };
 
-export {getAllUser, getUser, createUser, updateUser, deleteUser};
+module.exports = {getAllUser, getUser, createUser, updateUser, deleteUser};

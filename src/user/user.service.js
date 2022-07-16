@@ -1,6 +1,5 @@
-import UserModel from './user.model.js';
-
-import {NotFoundError} from '../middleware/errorHandler.js';
+const UserModel = require('./user.model.js');
+const {NotFoundError} = require('../middleware/errorHandler.js');
 
 const getAll = async () => {
 	const allUser = await UserModel.findAll();
@@ -34,4 +33,4 @@ const deleteOne = async (id) => {
 	await UserModel.destroy({where: {id: id}});
 };
 
-export default {getAll, getOne, create, update, deleteOne};
+module.exports = {getAll, getOne, create, update, deleteOne};

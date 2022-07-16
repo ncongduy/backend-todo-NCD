@@ -1,6 +1,6 @@
-import {DataTypes} from 'sequelize';
+const {DataTypes} = require('sequelize');
 
-import db from '../config/db.js';
+const db = require('../config/db.js');
 
 const Task = db.define('Task', {
   description: {
@@ -8,7 +8,6 @@ const Task = db.define('Task', {
     allowNull: false,
     validate: {
       notNull: true,
-      isAlpha: true,
       notEmpty: true,
     },
   },
@@ -24,4 +23,4 @@ Task.sync({alter: true})
   })
   .catch((error) => console.error('Table Task can not sychronize with error: ', error));
 
-export default Task;
+module.exports = Task;

@@ -1,4 +1,4 @@
-import fs from 'fs';
+const fs = require('fs');
 
 const logError = (error, req) => {
 	const date = new Date().toString();
@@ -17,4 +17,4 @@ DETAIL ERROR: ${JSON.stringify(error)}
 	});
 };
 
-export default logError;
+module.exports = logError;

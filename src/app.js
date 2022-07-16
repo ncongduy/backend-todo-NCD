@@ -1,10 +1,13 @@
-import express from 'express';
-import helmet from 'helmet';
-import morgan from 'morgan';
-import cors from 'cors';
+// import from library
+const express = require('express');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const cors = require('cors');
 
-import userRouter from './user/user.router.js';
-import errorHandler, {NotFoundError} from './middleware/errorHandler.js';
+// import internal
+const userRouter = require('./user/user.router.js');
+const {errorHandler, NotFoundError} = require('./middleware/errorHandler.js');
+const apiContentType = require('./middleware/apiContentType.js');
 
 // declare variable
 const app = express();
@@ -16,6 +19,7 @@ const corsOption = {
 app.use(helmet());
 app.use(morgan('dev'));
 app.use(cors(corsOption));
+app.use(apiContentType);
 app.use(express.json());
 
 // routing
@@ -28,4 +32,4 @@ app.get('*', (req, res, next) => {
 // error handling
 app.use(errorHandler);
 
-export default app;
+module.exports = app;

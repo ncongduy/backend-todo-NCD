@@ -1,6 +1,6 @@
-import logError from '../utils/logError.js';
+const logError = require('../utils/logError.js');
 
-export class ApiError {
+class ApiError {
   constructor(statusCode, message, source) {
     this.statusCode = statusCode;
     this.message = message;
@@ -8,31 +8,31 @@ export class ApiError {
   }
 }
 
-export class NotFoundError extends ApiError {
+class NotFoundError extends ApiError {
   constructor(message = 'Not Found', source) {
     super(404, message, source);
   }
 }
 
-export class ForbiddenError extends ApiError {
+class ForbiddenError extends ApiError {
   constructor(message = 'Forbidden', source) {
     super(403, message, source);
   }
 }
 
-export class InternalServerError extends ApiError {
+class InternalServerError extends ApiError {
   constructor(message = 'Internal Server Error', source) {
     super(500, message, source);
   }
 }
 
-export class UnauthorizedError extends ApiError {
+class UnauthorizedError extends ApiError {
   constructor(message = 'Unauthorized Request', source) {
     super(401, message, source);
   }
 }
 
-export class BadRequestError extends ApiError {
+class BadRequestError extends ApiError {
   constructor(message = 'Bad Request', source) {
     super(400, message, source);
   }
@@ -50,4 +50,12 @@ const errorHandler = (error, req, res, next) => {
   });
 };
 
-export default errorHandler;
+module.exports = {
+  ApiError,
+  NotFoundError,
+  ForbiddenError,
+  InternalServerError,
+  UnauthorizedError,
+  BadRequestError,
+  errorHandler,
+};
