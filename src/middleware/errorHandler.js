@@ -1,5 +1,12 @@
 const logError = require('../utils/logError.js');
 
+class MockError {
+  constructor(name, status) {
+    this.name = name;
+    this.status = status;
+  }
+}
+
 class ApiError {
   constructor(statusCode, message, source) {
     this.statusCode = statusCode;
@@ -51,6 +58,7 @@ const errorHandler = (error, req, res, next) => {
 };
 
 module.exports = {
+  MockError,
   ApiError,
   NotFoundError,
   ForbiddenError,

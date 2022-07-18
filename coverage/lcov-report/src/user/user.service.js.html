@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45.45% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/22</span>
+                <span class='fraction'>22/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>2/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">20% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/5</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">47.61% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/21</span>
+                <span class='fraction'>21/21</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -109,29 +109,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -144,30 +144,30 @@ const getAll = async () =&gt; {
 	return allUser;
 };
 &nbsp;
-const getOne = <span class="fstat-no" title="function not covered" >as</span>ync (id) =&gt; {
-	const foundUser = <span class="cstat-no" title="statement not covered" >await UserModel.findOne({where: {id: id}});</span>
-<span class="cstat-no" title="statement not covered" >	if (!foundUser) <span class="cstat-no" title="statement not covered" >throw new NotFoundError('User does not exist.');</span></span>
+const getOne = async (id) =&gt; {
+	const foundUser = await UserModel.findOne({where: {id: id}});
+	if (!foundUser) throw new NotFoundError('User does not exist.');
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	return foundUser;</span>
+	return foundUser;
 };
 &nbsp;
-const create = <span class="fstat-no" title="function not covered" >as</span>ync (data) =&gt; {
-	const newUser = <span class="cstat-no" title="statement not covered" >await UserModel.create(data);</span>
+const create = async (data) =&gt; {
+	const newUser = await UserModel.create(data);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	return newUser;</span>
+	return newUser;
 };
 &nbsp;
-const update = <span class="fstat-no" title="function not covered" >as</span>ync (data, id) =&gt; {
-<span class="cstat-no" title="statement not covered" >	await getOne(id);</span>
-<span class="cstat-no" title="statement not covered" >	await UserModel.update(data, {where: {id: id}});</span>
-	const newUpdateUser = <span class="cstat-no" title="statement not covered" >await getOne(id);</span>
+const update = async (data, id) =&gt; {
+	await getOne(id);
+	await UserModel.update(data, {where: {id: id}});
+	const newUpdateUser = await getOne(id);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >	return newUpdateUser;</span>
+	return newUpdateUser;
 };
 &nbsp;
-const deleteOne = <span class="fstat-no" title="function not covered" >as</span>ync (id) =&gt; {
-<span class="cstat-no" title="statement not covered" >	await getOne(id);</span>
-<span class="cstat-no" title="statement not covered" >	await UserModel.destroy({where: {id: id}});</span>
+const deleteOne = async (id) =&gt; {
+	await getOne(id);
+	await UserModel.destroy({where: {id: id}});
 };
 &nbsp;
 module.exports = {getAll, getOne, create, update, deleteOne};
@@ -178,7 +178,7 @@ module.exports = {getAll, getOne, create, update, deleteOne};
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2022-07-16T12:34:16.425Z
+                at 2022-07-18T16:09:35.053Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
