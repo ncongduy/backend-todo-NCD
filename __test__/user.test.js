@@ -2,6 +2,7 @@ const request = require('supertest');
 
 const app = require('../src/app.js');
 jest.mock('../src/user/user.model.js');
+jest.mock('../src/utils/logError.js');
 
 describe('GET /api/user', () => {
   test('get all user', async () => {
@@ -92,7 +93,7 @@ describe('PUT /api/user/:userId', () => {
   });
 });
 
-describe('DELETE /apit/user/:userId', () => {
+describe('DELETE /api/user/:userId', () => {
   test('delete a user with correct id', async () => {
     const response1 = await request(app).delete('/api/user/2');
     expect(response1.statusCode).toBe(204);

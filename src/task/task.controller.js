@@ -22,8 +22,6 @@ const getAllTaskOneUser = async (req, res, next) => {
 
     return res.status(200).json(allTaskOneUser);
   } catch (error) {
-    console.log('controller catching error: ', error);
-
     if (
       error.name === 'SequelizeValidationError' ||
       error.name === 'SequelizeUniqueConstraintError' ||

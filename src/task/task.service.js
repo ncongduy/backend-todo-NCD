@@ -28,6 +28,10 @@ const getOne = async (id) => {
 };
 
 const create = async (data) => {
+  const {userId} = data;
+  const foundUser = await UserModel.findOne({where: {id: userId}});
+
+  if (!foundUser) throw new NotFoundError('User does not exist');
   const newTask = await TaskModel.create(data);
 
   return newTask;
