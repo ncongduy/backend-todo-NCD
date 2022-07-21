@@ -4,7 +4,7 @@
 	"description": "build backend todo app",
 	"main": "index.js",
 	"scripts": {
-		"test": "jest --coverage",
+		"test": "jest",
 		"start": "node src/server.js",
 		"dev": "nodemon src/server.js"
 	},
