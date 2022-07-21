@@ -1,36 +1,57 @@
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+
 const UserModel = require('./user.model.js');
-const {NotFoundError} = require('../middleware/errorHandler.js');
+const {NotFoundError, ForbiddenError} = require('../middleware/errorHandler.js');
+const {JWT_SECRET} = require('../utils/secret.js');
 
 const getAll = async () => {
-	const allUser = await UserModel.findAll();
+  const allUser = await UserModel.findAll();
 
-	return allUser;
+  return allUser;
 };
 
 const getOne = async (id) => {
-	const foundUser = await UserModel.findOne({where: {id: id}});
-	if (!foundUser) throw new NotFoundError('User does not exist.');
+  const foundUser = await UserModel.findOne({where: {id: id}});
+  if (!foundUser) throw new NotFoundError('User does not exist.');
 
-	return foundUser;
+  return foundUser;
 };
 
 const create = async (data) => {
-	const newUser = await UserModel.create(data);
+  const {password} = data;
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
 
-	return newUser;
+  const newData = {...data, password: hashedPassword};
+  const newUser = await UserModel.create(newData);
+
+  return newUser;
 };
 
 const update = async (data, id) => {
-	await getOne(id);
-	await UserModel.update(data, {where: {id: id}});
-	const newUpdateUser = await getOne(id);
+  await getOne(id);
+  await UserModel.update(data, {where: {id: id}});
+  const newUpdateUser = await getOne(id);
 
-	return newUpdateUser;
+  return newUpdateUser;
 };
 
 const deleteOne = async (id) => {
-	await getOne(id);
-	await UserModel.destroy({where: {id: id}});
+  await getOne(id);
+  await UserModel.destroy({where: {id: id}});
 };
 
-module.exports = {getAll, getOne, create, update, deleteOne};
+const authenticate = async (data) => {
+  const {email, password} = data;
+  const foundUser = await UserModel.findOne({where: {email}});
+  if (!foundUser) throw new NotFoundError('User does not exist.');
+
+  const matchedPassword = await bcrypt.compare(password, foundUser.password);
+  if (!matchedPassword) throw new ForbiddenError('Password is not correct.');
+
+  const token = jwt.sign({userId: foundUser.id, email: foundUser.email}, JWT_SECRET);
+  return {token, userId: foundUser.id};
+};
+
+module.exports = {getAll, getOne, create, update, deleteOne, authenticate};

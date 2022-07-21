@@ -1,1 +1,6 @@
 
+Thu Jul 21 2022 19:01:47 GMT+0300 (Eastern European Summer Time) | POST /api/user | 400 | Invalid Request 
+
+DETAIL ERROR: {"statusCode":400,"message":"Invalid Request","source":{"name":"SequelizeValidationError","errors":[{"message":"Validation len on password failed","type":"Validation error","path":"password","value":"$2b$10$Qurzy0qrR8ea/NEFqX.YSOeln6GvQOMCNHMv.U6N5YxCmT41Zuiwe","origin":"FUNCTION","instance":{"register":"app-system","id":null,"firstName":"Duy","lastName":"Nguyen","email":"duy@gmail.com","password":"$2b$10$Qurzy0qrR8ea/NEFqX.YSOeln6GvQOMCNHMv.U6N5YxCmT41Zuiwe","updatedAt":"2022-07-21T16:01:47.053Z","createdAt":"2022-07-21T16:01:47.053Z"},"validatorKey":"len","validatorName":"len","validatorArgs":[6,20],"original":{"validatorName":"len","validatorArgs":[6,20]}}]}}
+--------------------------------------------------------------------------------------------------
+	

@@ -75,4 +75,18 @@ const deleteUser = async (req, res, next) => {
 	}
 };
 
-module.exports = {getAllUser, getUser, createUser, updateUser, deleteUser};
+const authenticateUser = async (req, res, next) => {
+	try {
+		const userAuthenticated = await UserService.authenticate(req.body);
+
+		return res.status(200).json(userAuthenticated);
+	} catch (error) {
+		if (error.name === 'SequelizeValidationError' || error.name === 'SequelizeUniqueConstraintError') {
+			next(new BadRequestError('Invalid Request', error));
+		} else {
+			next(error);
+		}
+	}
+};
+
+module.exports = {getAllUser, getUser, createUser, updateUser, deleteUser, authenticateUser};
