@@ -28,13 +28,23 @@ const UserModel = {
 	},
 	async findOne(data) {
 		const id = Number(data.where.id);
-		const result = this.users.find((user) => user.id === id);
-		if (!result) return null;
+		const email = data.where.email;
+		let result;
+
+		if (id) {
+			result = this.users.find((user) => user.id === id);
+			if (!result) return null;
+		}
+
+		if (email) {
+			result = this.users.find((user) => user.email === email);
+			if (!result) return null;
+		}
 
 		return result;
 	},
 	async create(data) {
-		const {firstName, lastName, email} = data;
+		const {firstName, lastName, email, password} = data;
 
 		// check validation
 		const checkUniqueEmail = this.users.some((user) => user.email === email);
@@ -48,7 +58,7 @@ const UserModel = {
 			lastName,
 			email,
 			register: 'app-system',
-			password: 'adfsajlk12313',
+			password,
 			createdAt: '2022-07-15T07:27:12.058Z',
 			updatedAt: '2022-07-15T14:53:40.493Z',
 		};

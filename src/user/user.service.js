@@ -19,7 +19,14 @@ const getOne = async (id) => {
 };
 
 const create = async (data) => {
-  const {password} = data;
+  const {password, register} = data;
+
+  if (!password && register !== 'app-system') {
+    const newUser = await UserModel.create(data);
+
+    return newUser;
+  }
+
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -44,7 +51,7 @@ const deleteOne = async (id) => {
 
 const authenticate = async (data) => {
   const {email, password} = data;
-  const foundUser = await UserModel.findOne({where: {email}});
+  const foundUser = await UserModel.findOne({where: {email: email}});
   if (!foundUser) throw new NotFoundError('User does not exist.');
 
   const matchedPassword = await bcrypt.compare(password, foundUser.password);
