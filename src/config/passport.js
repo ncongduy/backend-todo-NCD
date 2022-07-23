@@ -8,8 +8,6 @@ const jwtStrategy = new Strategy(
 	{
 		secretOrKey: JWT_SECRET,
 		jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-		issuer: 'Duy Nguyen Cong',
-		audience: 'localhost:5000',
 	},
 	async (payload, done) => {
 		try {

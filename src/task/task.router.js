@@ -12,8 +12,9 @@ const {
 
 const router = express.Router();
 
+router.use(passport.authenticate('jwt', {session: false}));
 router.get('/', getAllTaskAllUser);
-router.get('/user/:userId', passport.authenticate('jwt', {session: false}), getAllTaskOneUser);
+router.get('/user/:userId', getAllTaskOneUser);
 router.get('/user', getAllTaskOneUser);
 router.get('/:taskId', getTask);
 router.post('/', createTask);
