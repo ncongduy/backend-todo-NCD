@@ -50,14 +50,18 @@ const deleteOne = async (id) => {
 };
 
 const authenticate = async (data) => {
-  const {email, password} = data;
+  const {email, password, register} = data;
+
   const foundUser = await UserModel.findOne({where: {email: email}});
   if (!foundUser) throw new NotFoundError('User does not exist.');
 
-  const matchedPassword = await bcrypt.compare(password, foundUser.password);
-  if (!matchedPassword) throw new ForbiddenError('Password is not correct.');
+  if (password) {
+    const matchedPassword = await bcrypt.compare(password, foundUser.password);
+    if (!matchedPassword) throw new ForbiddenError('Password is not correct.');
+  }
 
-  const token = jwt.sign({email: foundUser.email}, JWT_SECRET);
+  const token = jwt.sign({email, register}, JWT_SECRET);
+
   return {token, userId: foundUser.id};
 };
 

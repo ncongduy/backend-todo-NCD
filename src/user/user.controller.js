@@ -77,7 +77,8 @@ const deleteUser = async (req, res, next) => {
 
 const authenticateUser = async (req, res, next) => {
 	try {
-		const userAuthenticated = await UserService.authenticate(req.body);
+		const data = req.user ? req.user : req.body;
+		const userAuthenticated = await UserService.authenticate(data);
 
 		return res.status(200).json(userAuthenticated);
 	} catch (error) {

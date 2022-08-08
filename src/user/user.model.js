@@ -8,7 +8,6 @@ const User = db.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      isAlpha: true,
       notEmpty: true,
       notNull: true,
     },
@@ -17,7 +16,6 @@ const User = db.define('User', {
     type: DataTypes.STRING,
     allowNull: false,
     validate: {
-      isAlpha: true,
       notEmpty: true,
       notNull: true,
     },
@@ -36,7 +34,7 @@ const User = db.define('User', {
     type: DataTypes.STRING,
     defaultValue: 'app-system',
     validate: {
-      isIn: [['app-system', 'google']],
+      isIn: [['app-system', 'google', 'github']],
     },
   },
   password: {
