@@ -9,6 +9,7 @@ const UserModel = {
 			email: 'bao@gmail.com',
 			register: 'google',
 			password: null,
+			role: 'user',
 			createdAt: '2022-07-15T07:32:51.243Z',
 			updatedAt: '2022-07-15T07:32:51.243Z',
 		},
@@ -19,6 +20,7 @@ const UserModel = {
 			email: 'duy@gmail.com',
 			register: 'google',
 			password: null,
+			role: 'user',
 			createdAt: '2022-07-15T07:27:12.058Z',
 			updatedAt: '2022-07-15T14:53:40.493Z',
 		},
@@ -29,6 +31,7 @@ const UserModel = {
 			email: 'ncongduy@github.com',
 			register: 'github',
 			password: null,
+			role: 'admin',
 			createdAt: '2022-08-08T10:54:39.942Z',
 			updatedAt: '2022-08-08T10:54:39.942Z',
 		},
@@ -63,12 +66,13 @@ const UserModel = {
 		}
 
 		const newData = {
-			id: 3,
+			id: 6,
 			firstName,
 			lastName,
 			email,
 			register: 'app-system',
 			password,
+			role: 'user',
 			createdAt: '2022-07-15T07:27:12.058Z',
 			updatedAt: '2022-07-15T14:53:40.493Z',
 		};
