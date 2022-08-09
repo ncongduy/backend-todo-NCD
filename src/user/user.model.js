@@ -43,6 +43,10 @@ const User = db.define('User', {
       len: [6, 100],
     },
   },
+  role: {
+    type: DataTypes.STRING,
+    defaultValue: 'user',
+  },
 });
 
 User.hasMany(Task, {

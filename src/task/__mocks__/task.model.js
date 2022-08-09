@@ -32,6 +32,14 @@ const TaskModel = {
       createdAt: '2022-07-16T19:38:07.137Z',
       updatedAt: '2022-07-16T19:38:07.137Z',
     },
+    {
+      id: 5,
+      description: 'learn Ruby on Rails',
+      isCompleted: false,
+      userId: 5,
+      createdAt: '2022-07-16T19:38:07.137Z',
+      updatedAt: '2022-07-16T19:38:07.137Z',
+    },
   ],
   async findAll(id) {
     if (!id) return this.tasks;

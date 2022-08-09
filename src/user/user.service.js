@@ -1,9 +1,7 @@
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 const UserModel = require('./user.model.js');
-const {NotFoundError, ForbiddenError} = require('../middleware/errorHandler.js');
-const {JWT_SECRET} = require('../utils/secret.js');
+const {NotFoundError} = require('../middleware/errorHandler.js');
 
 const getAll = async () => {
   const allUser = await UserModel.findAll();
@@ -49,20 +47,4 @@ const deleteOne = async (id) => {
   await UserModel.destroy({where: {id: id}});
 };
 
-const authenticate = async (data) => {
-  const {email, password, register} = data;
-
-  const foundUser = await UserModel.findOne({where: {email: email}});
-  if (!foundUser) throw new NotFoundError('User does not exist.');
-
-  if (password) {
-    const matchedPassword = await bcrypt.compare(password, foundUser.password);
-    if (!matchedPassword) throw new ForbiddenError('Password is not correct.');
-  }
-
-  const token = jwt.sign({email, register}, JWT_SECRET);
-
-  return {token, userId: foundUser.id};
-};
-
-module.exports = {getAll, getOne, create, update, deleteOne, authenticate};
+module.exports = {getAll, getOne, create, update, deleteOne};

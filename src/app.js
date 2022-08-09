@@ -8,6 +8,7 @@ const passport = require('passport');
 // import internal
 const userRouter = require('./user/user.router.js');
 const taskRouter = require('./task/task.router.js');
+const authRouter = require('./auth/auth.router.js');
 const {errorHandler, NotFoundError} = require('./middleware/errorHandler.js');
 const apiContentType = require('./middleware/apiContentType.js');
 const {jwtStrategy, githubStrategy} = require('./config/passport.js');
@@ -31,6 +32,7 @@ passport.use(jwtStrategy);
 passport.use(githubStrategy);
 
 // routing
+app.use('/auth', authRouter);
 app.use('/api/user', userRouter);
 app.use('/api/task', taskRouter);
 

@@ -28,7 +28,7 @@ const githubStrategy = new GitHubStrategy(
 	{
 		clientID: GITHUB_CLIENT_ID,
 		clientSecret: GITHUB_CLIENT_SECRET,
-		callbackURL: 'http://localhost:5000/api/user/auth/github/callback',
+		callbackURL: 'http://localhost:5000/auth/github/callback',
 	},
 	async (accessToken, refreshToken, profile, done) => {
 		try {

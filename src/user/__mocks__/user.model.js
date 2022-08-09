@@ -22,6 +22,16 @@ const UserModel = {
 			createdAt: '2022-07-15T07:27:12.058Z',
 			updatedAt: '2022-07-15T14:53:40.493Z',
 		},
+		{
+			id: 5,
+			firstName: 'Duy Nguyen Cong',
+			lastName: 'Duy Nguyen Cong',
+			email: 'ncongduy@github.com',
+			register: 'github',
+			password: null,
+			createdAt: '2022-08-08T10:54:39.942Z',
+			updatedAt: '2022-08-08T10:54:39.942Z',
+		},
 	],
 	async findAll() {
 		return this.users;
