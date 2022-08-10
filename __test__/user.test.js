@@ -15,6 +15,13 @@ const requestFunc = async (method, url, data) => {
         .set({
           Authorization: `Bearer ${token}`,
         });
+    case 'POST':
+      return await request(app)
+        .post(url)
+        .send(data)
+        .set({
+          Authorization: `Bearer ${token}`,
+        });
     case 'PUT':
       return await request(app)
         .put(url)
@@ -29,7 +36,7 @@ const requestFunc = async (method, url, data) => {
           Authorization: `Bearer ${token}`,
         });
     default:
-      return await request(app).get(url);
+      return null;
   }
 };
 
