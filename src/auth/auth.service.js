@@ -25,6 +25,8 @@ const passwordAuthenticate = async (data) => {
   if (password) {
     const matchedPassword = await bcrypt.compare(password, foundUser.password);
     if (!matchedPassword) throw new ForbiddenError('Password is not correct.');
+  } else {
+    throw new ForbiddenError('Password is not correct.');
   }
 
   const token = jwt.sign({email, register, userId: foundUser.id, role: foundUser.role}, JWT_SECRET);

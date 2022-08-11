@@ -66,7 +66,7 @@ const UserModel = {
 		}
 
 		const newData = {
-			id: 6,
+			id: 3,
 			firstName,
 			lastName,
 			email,

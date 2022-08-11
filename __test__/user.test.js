@@ -51,7 +51,7 @@ describe('test user api with authentication simulation', () => {
       });
 
       expect(response.statusCode).toBe(200);
-      expect(response['_body'].id).toBe(6);
+      expect(response['_body'].id).toBe(3);
       expect(response['_body'].firstName).toBe('Tu');
       expect(response['_body'].lastName).toBe('Nguyen');
       expect(response['_body'].email).toBe('tu@gmail.com');
@@ -87,7 +87,7 @@ describe('test user api with authentication simulation', () => {
       expect(response['_body'][2].id).toBe(5);
       expect(response['_body'][2].firstName).toBe('Duy Nguyen Cong');
       expect(response['_body'][2].email).toBe('ncongduy@github.com');
-      expect(response['_body'][3].id).toBe(6);
+      expect(response['_body'][3].id).toBe(3);
       expect(response['_body'][3].firstName).toBe('Tu');
       expect(response['_body'][3].email).toBe('tu@gmail.com');
     });
@@ -150,39 +150,4 @@ describe('test user api with authentication simulation', () => {
       expect(response2['_body'].message).toBe('User does not exist.');
     });
   });
-
-  // describe('POST /api/user/login', () => {
-  //   test('user login successful', async () => {
-  //     const response = await request(app).post('/api/user/login').send({
-  //       email: 'tu@gmail.com',
-  //       password: 'tu123',
-  //     });
-
-  //     expect(response['_body']).toHaveProperty('token');
-  //     expect(response['_body'].token).not.toBeNull();
-  //     expect(response['_body'].userId).toBe(3);
-  //   });
-
-  //   test('user login failure with non exist email', async () => {
-  //     const response = await request(app).post('/api/user/login').send({
-  //       email: 'abc@gmail.com',
-  //       password: 'abc123',
-  //     });
-
-  //     expect(response['_body'].status).toBe('error');
-  //     expect(response['_body'].statusCode).toBe(404);
-  //     expect(response['_body'].message).toBe('User does not exist.');
-  //   });
-
-  //   test('user login failure with wrong password', async () => {
-  //     const response = await request(app).post('/api/user/login').send({
-  //       email: 'tu@gmail.com',
-  //       password: 'abc123',
-  //     });
-
-  //     expect(response['_body'].status).toBe('error');
-  //     expect(response['_body'].statusCode).toBe(403);
-  //     expect(response['_body'].message).toBe('Password is not correct.');
-  //   });
-  // });
 });
